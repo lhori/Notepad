@@ -1,0 +1,63 @@
+﻿<!--
+    FILE                   : AboutWindow.xaml
+    PROJECT                : Basic Notepad
+    PROGRAMMER             : lhori
+    FIRST VERSION          : 2020-09-20
+    DESCRIPTION            : This file contains the layout settings and attributes for the user 
+                             interface of the About window of text editor.
+-->
+<Window x:Class="lhori_Editor.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lhori_Editor"
+        mc:Ignorable="d"
+        Title="About - LHori Notepad" Height="240" Width="400"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                Height="20" 
+                Width="75"
+                Content="OK"
+                Command="ApplicationCommands.Close">
+            <Button.CommandBindings>
+                <CommandBinding Command="ApplicationCommands.Close" 
+                                CanExecute="CloseCommandBinding_CanExecute" 
+                                Executed="CloseCommandBinding_Executed"/>
+            </Button.CommandBindings>
+        </Button>
+        <TextBlock Grid.Row="0" 
+                   Grid.ColumnSpan="1" 
+                   Margin="0,0,-100,0" 
+                   TextAlignment="Center" 
+                   FontSize="20" FontWeight="Bold" 
+                   FontFamily="Sylfaen">
+            LHori Text Editor
+        </TextBlock>
+        <TextBlock Grid.Row="1" 
+                   Grid.ColumnSpan= "1"
+                   Margin="0,0,-100, 0"
+                   TextAlignment="Left">
+            Developed By: Luka(Haruka) Horiuchi <LineBreak/>
+            Version: 1.0.1 <LineBreak/>
+            About: This Text Editor developed by Visual Studio 2019. <LineBreak/>
+            Used C# and WPF<LineBreak/>
+            <LineBreak/>
+            ©2020 Haruka Horiuchi <LineBreak/>
+            All rights reserved <LineBreak/>
+        </TextBlock>
+    </Grid>
+</Window>

@@ -1,0 +1,85 @@
+﻿<!--
+    FILE                   : EditorWindow.xaml
+    PROJECT                : Basic Notepad
+    PROGRAMMER             : lhori
+    FIRST VERSION          : 2020-09-20
+    DESCRIPTION            : This file contains the layout settings and attributes for the user 
+                             interface of the main window of text editor.
+-->
+<Window x:Class="lhori_Editor.EditorWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:lhori_Editor"
+            xmlns:self="clr-namespace:lhori_Editor"
+            mc:Ignorable="d"
+            Title="Lhori Notepad" 
+            Height="450" 
+            Width="800"
+            Closing="TextWindow_Closing">
+        <!--List of command bindings used for the menu. There are 2 customized commands used.-->
+        <Window.CommandBindings>
+            <CommandBinding Command="ApplicationCommands.New" 
+                            CanExecute="NewCommandBinding_CanExecute"
+                            Executed="NewCommandBinding_Executed"/>
+            <CommandBinding Command="ApplicationCommands.Open" 
+                            CanExecute="OpenCommandBinding_CanExecute" 
+                            Executed="OpenCommandBinding_Executed"/>
+            <CommandBinding Command="ApplicationCommands.SaveAs" 
+                            CanExecute="SaveAsCommandBinding_CanExecute" 
+                            Executed="SaveAsCommandBinding_Executed"/>
+            <CommandBinding Command="ApplicationCommands.Close" 
+                            CanExecute="CloseCommandBinding_CanExecute" 
+                            Executed="CloseCommandBinding_Executed"/>
+            <CommandBinding Command="self:CustomizedCommands.TextWrap" 
+                            CanExecute="TextWrapCommandBinding_CanExecute" 
+                            Executed="TextWrapCommandBinding_Executed"/>
+            <CommandBinding Command="self:CustomizedCommands.About" 
+                            CanExecute="AboutCommandBinding_CanExecute" 
+                            Executed="AboutCommandBinding_Executed"/>
+        </Window.CommandBindings>
+        <Grid>
+            <DockPanel LastChildFill="True">
+                <Menu DockPanel.Dock="Top">
+                    <MenuItem Header="File">
+                        <MenuItem Header="New" 
+                                  Command="ApplicationCommands.New"/>
+                        <MenuItem Header="Open"
+                                  Command="ApplicationCommands.Open"/>
+                        <MenuItem Header="Save As" 
+                                  Command="ApplicationCommands.SaveAs"/>
+                        <MenuItem Header="Close" 
+                                  Command="ApplicationCommands.Close"/>
+                    </MenuItem>
+                    <MenuItem Header="Option">
+                        <MenuItem Name="txtWrap" 
+                                  Header="Text Wrap" 
+                                  Command="self:CustomizedCommands.TextWrap"
+                                  IsCheckable="True"/>
+                    </MenuItem>
+                    <MenuItem Header="Help">
+                        <MenuItem Header="About" 
+                                  Command="self:CustomizedCommands.About"/>
+                    </MenuItem>
+                </Menu>
+                <StatusBar Name="wordLineCounter" 
+                           DockPanel.Dock="Bottom" 
+                           Height="20" 
+                           VerticalAlignment="Bottom">
+                    <StatusBarItem>
+                        <TextBlock Name="StatusShow" 
+                                   VerticalAlignment="Bottom" 
+                                   Text="" 
+                                   FontSize="12" />
+                    </StatusBarItem>
+                </StatusBar>
+                <TextBox Name="textInput" 
+                         DockPanel.Dock="Top" 
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         VerticalScrollBarVisibility="Visible"
+                         KeyUp="StatusShow_KeyUp"/>
+            </DockPanel>
+        </Grid>
+    </Window>
